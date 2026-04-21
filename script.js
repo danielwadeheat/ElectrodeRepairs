@@ -168,7 +168,7 @@ if (reviewsRotator) {
       return;
     }
     stopReviewRotation();
-    reviewIntervalId = window.setInterval(advanceReview, 4800);
+    reviewIntervalId = window.setInterval(advanceReview, 6800);
   }
 
   if (reviewSlides.length > 0) {
