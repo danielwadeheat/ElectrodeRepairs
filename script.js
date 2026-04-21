@@ -45,6 +45,7 @@ document.head.appendChild(structuredDataScript);
 const emailTrigger = document.getElementById('email-trigger');
 const emailMenu = document.getElementById('email-menu');
 const copyEmailButton = document.getElementById('copy-email-btn');
+const openMailOption = emailMenu?.querySelector('a[href^="mailto:"]') || null;
 
 function showEmailToast(message) {
   let toast = document.querySelector('.email-toast');
@@ -70,6 +71,10 @@ function closeEmailMenu() {
   emailTrigger.setAttribute('aria-expanded', 'false');
 }
 
+function openMailClient() {
+  window.location.assign(`mailto:${businessEmail}`);
+}
+
 if (emailTrigger && emailMenu && copyEmailButton) {
   emailTrigger.addEventListener('click', () => {
     const menuIsOpen = !emailMenu.hidden;
@@ -77,13 +82,27 @@ if (emailTrigger && emailMenu && copyEmailButton) {
     emailTrigger.setAttribute('aria-expanded', String(!menuIsOpen));
   });
 
+  if (openMailOption) {
+    openMailOption.addEventListener('click', (event) => {
+      event.preventDefault();
+      closeEmailMenu();
+      openMailClient();
+
+      window.setTimeout(() => {
+        if (document.visibilityState === 'visible') {
+          showEmailToast('If Mail did not open, choose Copy Email.');
+        }
+      }, 900);
+    });
+  }
+
   copyEmailButton.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(businessEmail);
       showEmailToast('Copied to clipboard');
     } catch {
       showEmailToast('Copy failed. Opening mail app...');
-      window.location.href = `mailto:${businessEmail}`;
+      openMailClient();
     }
     closeEmailMenu();
   });
