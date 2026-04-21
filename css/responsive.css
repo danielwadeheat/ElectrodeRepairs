@@ -34,6 +34,26 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .reviews {
+    margin-top: 2.1rem;
+    padding: 1.85rem;
+  }
+
+  .reviews-shell {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  .reviews-rotator {
+    min-height: 265px;
+    padding: 1.15rem 1.25rem 0.95rem;
+  }
+
+  .review-slides {
+    min-height: 192px;
+  }
+
   .footer-content {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:

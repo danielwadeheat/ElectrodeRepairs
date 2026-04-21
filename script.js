@@ -117,3 +117,107 @@ if (emailTrigger && emailMenu && copyEmailButton) {
     }
   });
 }
+
+const reviewsRotator = document.getElementById('reviews-rotator');
+
+if (reviewsRotator) {
+  const reviewSlides = Array.from(reviewsRotator.querySelectorAll('[data-review-slide]'));
+  const reviewDots = Array.from(reviewsRotator.querySelectorAll('[data-review-dot]'));
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let activeReviewIndex = reviewSlides.findIndex((slide) => slide.classList.contains('is-active'));
+  let reviewIntervalId = 0;
+
+  if (activeReviewIndex < 0) {
+    activeReviewIndex = 0;
+  }
+
+  function setActiveReview(nextIndex) {
+    if (reviewSlides.length === 0) {
+      return;
+    }
+    const normalizedIndex =
+      ((nextIndex % reviewSlides.length) + reviewSlides.length) % reviewSlides.length;
+    activeReviewIndex = normalizedIndex;
+
+    reviewSlides.forEach((slide, index) => {
+      const isActive = index === normalizedIndex;
+      slide.classList.toggle('is-active', isActive);
+      slide.setAttribute('aria-hidden', String(!isActive));
+    });
+
+    reviewDots.forEach((dot, index) => {
+      const isActive = index === normalizedIndex;
+      dot.classList.toggle('is-active', isActive);
+      dot.setAttribute('aria-pressed', String(isActive));
+    });
+  }
+
+  function stopReviewRotation() {
+    if (reviewIntervalId) {
+      window.clearInterval(reviewIntervalId);
+      reviewIntervalId = 0;
+    }
+  }
+
+  function advanceReview() {
+    setActiveReview(activeReviewIndex + 1);
+  }
+
+  function startReviewRotation() {
+    if (prefersReducedMotion.matches || reviewSlides.length < 2) {
+      return;
+    }
+    stopReviewRotation();
+    reviewIntervalId = window.setInterval(advanceReview, 4800);
+  }
+
+  if (reviewSlides.length > 0) {
+    setActiveReview(activeReviewIndex);
+  }
+
+  reviewDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      setActiveReview(index);
+      startReviewRotation();
+    });
+  });
+
+  reviewsRotator.addEventListener('mouseenter', stopReviewRotation);
+  reviewsRotator.addEventListener('mouseleave', startReviewRotation);
+  reviewsRotator.addEventListener('focusin', stopReviewRotation);
+  reviewsRotator.addEventListener('focusout', () => {
+    window.setTimeout(() => {
+      if (!reviewsRotator.contains(document.activeElement)) {
+        startReviewRotation();
+      }
+    }, 0);
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopReviewRotation();
+      return;
+    }
+    startReviewRotation();
+  });
+
+  if (typeof prefersReducedMotion.addEventListener === 'function') {
+    prefersReducedMotion.addEventListener('change', () => {
+      if (prefersReducedMotion.matches) {
+        stopReviewRotation();
+        return;
+      }
+      startReviewRotation();
+    });
+  } else if (typeof prefersReducedMotion.addListener === 'function') {
+    prefersReducedMotion.addListener((event) => {
+      if (event.matches) {
+        stopReviewRotation();
+        return;
+      }
+      startReviewRotation();
+    });
+  }
+
+  startReviewRotation();
+}
