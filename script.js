@@ -13,13 +13,7 @@ const businessAddress = {
   postalCode: '73065',
   addressCountry: 'US',
 };
-const businessHours = [
-  'Tu 10:00-18:00',
-  'We 10:00-18:00',
-  'Th 10:00-18:00',
-  'Fr 10:00-18:00',
-  'Sa 10:00-18:00',
-];
+const businessHours = ['Tu 10:00-18:00', 'We 10:00-18:00', 'Th 10:00-18:00', 'Fr 10:00-18:00', 'Sa 10:00-18:00'];
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -34,10 +28,7 @@ const structuredData = {
   address: businessAddress,
   openingHours: businessHours,
   areaServed: 'Newcastle, OK',
-  sameAs: [
-    'https://www.instagram.com/electrode_repairs/',
-    'https://www.facebook.com/ElectrodeRepairs',
-  ],
+  sameAs: ['https://www.instagram.com/electrode_repairs/', 'https://www.facebook.com/ElectrodeRepairs'],
 };
 
 const existingStructuredDataScript = document.getElementById('local-business-jsonld');
@@ -135,8 +126,7 @@ if (reviewsRotator) {
     if (reviewSlides.length === 0) {
       return;
     }
-    const normalizedIndex =
-      ((nextIndex % reviewSlides.length) + reviewSlides.length) % reviewSlides.length;
+    const normalizedIndex = ((nextIndex % reviewSlides.length) + reviewSlides.length) % reviewSlides.length;
     activeReviewIndex = normalizedIndex;
 
     reviewSlides.forEach((slide, index) => {
