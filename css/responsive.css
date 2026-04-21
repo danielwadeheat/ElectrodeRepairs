@@ -1,58 +1,58 @@
 /* Desktop and large-tablet layout overrides */
 
 @media (width >= 768px) {
-.container {
-max-width: 960px;
-padding: 2rem 1rem;
-}
+  .container {
+    max-width: 960px;
+    padding: 2rem 1rem;
+  }
 
-.logo {
-top: 1rem;
-left: 1rem;
-width: clamp(180px, 24vw, 270px);
-}
+  .logo {
+    top: 1rem;
+    left: 1rem;
+    width: clamp(180px, 24vw, 270px);
+  }
 
-main.container {
-padding-top: clamp(6rem, 12vw, 7.5rem);
-}
+  main.container {
+    padding-top: clamp(6rem, 12vw, 7.5rem);
+  }
 
-.hero {
-padding: 2rem;
-margin-top: 1.5rem;
-}
+  .hero {
+    padding: 2rem;
+    margin-top: 1.5rem;
+  }
 
-h1 {
-font-size: clamp(1.8rem, 3vw, 2.5rem);
-}
+  h1 {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+  }
 
-.service-hub {
-margin-top: 2rem;
-padding: 2rem;
-}
+  .service-hub {
+    margin-top: 2rem;
+    padding: 2rem;
+  }
 
-.service-cards {
-grid-template-columns: repeat(2, minmax(0, 1fr));
-}
+  .service-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 
-.footer-content {
-grid-template-columns: minmax(0, 1fr) auto;
-grid-template-areas:
-"logo social"
-"disclaimer legal";
-gap: 0.65rem 1rem;
-align-items: end;
-}
+  .footer-content {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'logo social'
+      'disclaimer legal';
+    gap: 0.65rem 1rem;
+    align-items: end;
+  }
 
-.social-links {
-place-self: end end;
-}
+  .social-links {
+    place-self: end end;
+  }
 
-.legal-links {
-justify-self: end;
-}
+  .legal-links {
+    justify-self: end;
+  }
 
-.email-menu {
-left: auto;
-right: 0;
-}
+  .email-menu {
+    left: auto;
+    right: 0;
+  }
 }
