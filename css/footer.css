@@ -39,8 +39,7 @@ grid-area: social;
 display: flex;
 align-items: center;
 gap: 0.6rem;
-justify-self: start;
-align-self: start;
+place-self: start start;
 }
 
 .social-icon {
@@ -69,7 +68,7 @@ color: var(--primary);
 .social-icon svg {
 width: 15px;
 height: 15px;
-fill: currentColor;
+fill: currentcolor;
 }
 
 .email-actions {
@@ -91,7 +90,7 @@ min-width: 150px;
 border: 1px solid #2a374a;
 border-radius: 10px;
 background: linear-gradient(180deg, #111827 0%, #0b1220 100%);
-box-shadow: 0 12px 24px rgba(5, 12, 22, 0.45);
+box-shadow: 0 12px 24px rgb(5 12 22 / 45%);
 overflow: hidden;
 z-index: 25;
 }
@@ -119,7 +118,7 @@ border-top: 1px solid #1f2937;
 
 .email-option:hover,
 .email-option:focus-visible {
-background: rgba(42, 130, 196, 0.16);
+background: rgb(42 130 196 / 16%);
 color: #eff6ff;
 }
 
@@ -128,7 +127,7 @@ position: fixed;
 right: 1rem;
 bottom: 1rem;
 padding: 0.55rem 0.75rem;
-border: 1px solid rgba(42, 130, 196, 0.55);
+border: 1px solid rgb(42 130 196 / 55%);
 border-radius: 8px;
 background: #0f172a;
 color: #dbe8fa;
@@ -150,8 +149,7 @@ transform: translateY(0);
 grid-area: legal;
 display: flex;
 gap: 0.85rem;
-justify-self: start;
-align-self: start;
+place-self: start start;
 white-space: nowrap;
 }
 
