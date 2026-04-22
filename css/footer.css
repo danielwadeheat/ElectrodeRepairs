@@ -9,10 +9,10 @@ footer {
   grid-template-columns: 1fr;
   grid-template-areas:
     'logo'
-    'contact'
-    'social'
     'legal'
-    'disclaimer';
+    'disclaimer'
+    'contact'
+    'social';
   row-gap: 0.95rem;
 }
 
@@ -182,7 +182,7 @@ footer {
   grid-area: legal;
   display: flex;
   gap: 0.85rem;
-  margin-top: 0.1rem;
+  margin-top: 0.05rem;
   place-self: start start;
   white-space: nowrap;
 }

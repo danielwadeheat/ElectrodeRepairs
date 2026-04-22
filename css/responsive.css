@@ -73,8 +73,8 @@
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
       'logo contact'
-      'disclaimer social'
-      'disclaimer legal';
+      'legal social'
+      'disclaimer social';
     gap: 0.85rem 1.15rem;
     align-items: start;
   }
@@ -90,8 +90,8 @@
   }
 
   .legal-links {
-    margin-top: 0.2rem;
-    justify-self: end;
+    margin-top: 0;
+    justify-self: start;
   }
 
   .email-menu {
