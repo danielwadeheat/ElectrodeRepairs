@@ -34,6 +34,21 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .why-us {
+    margin-top: 2.1rem;
+    padding: 1.85rem;
+  }
+
+  .why-us-grid {
+    margin-top: 1.25rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .why-us-item h3 {
+    font-size: 0.98rem;
+  }
+
   .reviews {
     margin-top: 2.1rem;
     padding: 1.85rem;
@@ -57,17 +72,25 @@
   .footer-content {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
-      'logo social'
+      'logo contact'
+      'disclaimer social'
       'disclaimer legal';
-    gap: 0.65rem 1rem;
-    align-items: end;
+    gap: 0.85rem 1.15rem;
+    align-items: start;
+  }
+
+  .footer-contact {
+    place-self: start end;
+    text-align: right;
   }
 
   .social-links {
-    place-self: end end;
+    margin-top: 0.2rem;
+    place-self: start end;
   }
 
   .legal-links {
+    margin-top: 0.2rem;
     justify-self: end;
   }
 

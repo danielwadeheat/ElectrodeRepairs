@@ -9,10 +9,11 @@ footer {
   grid-template-columns: 1fr;
   grid-template-areas:
     'logo'
+    'contact'
     'social'
-    'disclaimer'
-    'legal';
-  row-gap: 0.8rem;
+    'legal'
+    'disclaimer';
+  row-gap: 0.95rem;
 }
 
 .footer-logo-wrap {
@@ -27,6 +28,33 @@ footer {
   flex-shrink: 0;
 }
 
+.footer-contact {
+  grid-area: contact;
+  margin: 0;
+  display: grid;
+  gap: 0.25rem;
+  font-style: normal;
+  place-self: start start;
+}
+
+.footer-contact-link {
+  color: #c4d1e0;
+  text-decoration: none;
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+
+.footer-phone {
+  color: #dce8f6;
+  font-weight: 600;
+}
+
+.footer-contact-link:hover,
+.footer-contact-link:focus-visible {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
 .footer-disclaimer {
   grid-area: disclaimer;
   display: block;
@@ -39,6 +67,7 @@ footer {
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  margin-top: 0.2rem;
   place-self: start start;
 }
 
@@ -153,8 +182,14 @@ footer {
   grid-area: legal;
   display: flex;
   gap: 0.85rem;
+  margin-top: 0.1rem;
   place-self: start start;
   white-space: nowrap;
+}
+
+.legal-links p {
+  margin: 0;
+  color: #7f8da0;
 }
 
 .legal-links a {
