@@ -123,19 +123,14 @@
   /* Contact Footer */
   .contact-footer-inner {
     grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-areas:
-      'text1 logo'
-      'text2 logo';
+    grid-template-areas: 'text logo';
     column-gap: 1rem;
     align-items: end;
   }
 
-  .contact-footer-inner > p:first-of-type {
-    grid-area: text1;
-  }
-
-  .contact-footer-inner > p:nth-of-type(2) {
-    grid-area: text2;
+  .contact-footer-inner .contact-footer-copy {
+    grid-area: text;
+    align-self: end;
   }
 
   .contact-footer-inner .contact-footer-logo-wrap {
@@ -145,5 +140,21 @@
 
   .contact-footer-legal-links {
     justify-self: end;
+  }
+}
+
+@media (width <= 900px) and (orientation: portrait) {
+  .contact-footer-inner {
+    grid-template-areas:
+      'logo'
+      'text';
+  }
+
+  .contact-footer-inner .contact-footer-logo-wrap {
+    grid-area: logo;
+  }
+
+  .contact-footer-inner .contact-footer-copy {
+    grid-area: text;
   }
 }
