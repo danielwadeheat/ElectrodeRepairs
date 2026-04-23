@@ -1,0 +1,389 @@
+/* DEV NOTE: Homepage footer styles (mobile-first baseline, used up to 770px). */
+#contact {
+  border-top: 1px solid #1f2937;
+  border-bottom: 0;
+  color: var(--muted);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'logo'
+    'contact'
+    'social'
+    'legal'
+    'disclaimer';
+  row-gap: 0.95rem;
+}
+
+.footer-logo-wrap {
+  grid-area: logo;
+  display: flex;
+  align-items: flex-end;
+}
+
+.footer-logo {
+  width: 156px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.footer-contact {
+  grid-area: contact;
+  margin: 0;
+  display: grid;
+  gap: 0.25rem;
+  font-style: normal;
+  place-self: start start;
+}
+
+.footer-contact-link {
+  order: 2;
+  color: #c4d1e0;
+  text-decoration: none;
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+
+.footer-phone {
+  order: 1;
+  color: #dce8f6;
+  font-weight: 600;
+}
+
+.footer-contact-link:hover,
+.footer-contact-link:focus-visible {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.footer-content .social-links {
+  grid-area: social;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.2rem;
+  place-self: start start;
+}
+
+.footer-content .social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #374151;
+  border-radius: 999px;
+  color: var(--fg);
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.footer-content .social-icon:hover,
+.footer-content .social-icon:focus-visible {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.footer-content .social-icon svg {
+  width: 15px;
+  height: 15px;
+  fill: currentcolor;
+}
+
+.footer-content .email-actions {
+  position: relative;
+}
+
+.footer-content .email-trigger {
+  appearance: none;
+}
+
+.footer-content .email-menu {
+  position: absolute;
+  left: 0;
+  right: auto;
+  bottom: calc(100% + 0.5rem);
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  border: 1px solid #2a374a;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #111827 0%, #0b1220 100%);
+  box-shadow: 0 12px 24px rgb(5 12 22 / 45%);
+  overflow: hidden;
+  z-index: 25;
+}
+
+.footer-content .email-menu[hidden] {
+  display: none;
+}
+
+.footer-content .email-option {
+  display: block;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 0;
+  background: transparent;
+  color: var(--fg);
+  text-align: left;
+  text-decoration: none;
+  font-size: 0.84rem;
+  cursor: pointer;
+}
+
+.footer-content .email-option + .email-option {
+  border-top: 1px solid #1f2937;
+}
+
+.footer-content .email-option:hover,
+.footer-content .email-option:focus-visible {
+  background: rgb(42 130 196 / 16%);
+  color: #eff6ff;
+}
+
+.legal-links {
+  grid-area: legal;
+  display: flex;
+  gap: 0.85rem;
+  margin-top: 0.05rem;
+  place-self: start start;
+  white-space: nowrap;
+}
+
+.legal-links p {
+  margin: 0;
+  color: #7f8da0;
+}
+
+.legal-links a {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.legal-links a:hover,
+.legal-links a:focus-visible {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.footer-disclaimer {
+  grid-area: disclaimer;
+  display: block;
+  max-width: 560px;
+  line-height: 1.35;
+}
+
+/* DEV NOTE: Legal-page footer shared styles (privacy_policy.html and terms_of_use.html). */
+.legal-footer {
+  margin-top: auto;
+  border-top: 1px solid #1f2937;
+  padding: 1rem 0 1.15rem;
+}
+
+.legal-footer-inner {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.legal-footer-logo-wrap {
+  justify-self: start;
+}
+
+.legal-footer-logo {
+  width: 156px;
+  height: auto;
+  display: block;
+}
+
+.legal-footer-contact {
+  margin: 0;
+  display: grid;
+  gap: 0.25rem;
+  font-style: normal;
+  place-self: start start;
+}
+
+.legal-footer-phone,
+.legal-footer-address {
+  color: #c4d1e0;
+  text-decoration: none;
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+
+.legal-footer-phone {
+  color: #dce8f6;
+  font-weight: 600;
+}
+
+.legal-footer-phone:hover,
+.legal-footer-phone:focus-visible,
+.legal-footer-address:hover,
+.legal-footer-address:focus-visible {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.legal-footer .social-links {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  place-self: start start;
+}
+
+.legal-footer .social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #374151;
+  border-radius: 999px;
+  color: var(--fg);
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.legal-footer .social-icon:hover,
+.legal-footer .social-icon:focus-visible {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.legal-footer .social-icon svg {
+  width: 15px;
+  height: 15px;
+  fill: currentcolor;
+}
+
+.legal-footer .email-actions {
+  position: relative;
+}
+
+.legal-footer .email-trigger {
+  appearance: none;
+}
+
+.legal-footer .email-menu {
+  position: absolute;
+  left: 0;
+  right: auto;
+  bottom: calc(100% + 0.5rem);
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  border: 1px solid #2a374a;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #111827 0%, #0b1220 100%);
+  box-shadow: 0 12px 24px rgb(5 12 22 / 45%);
+  overflow: hidden;
+  z-index: 25;
+}
+
+.legal-footer .email-menu[hidden] {
+  display: none;
+}
+
+.legal-footer .email-option {
+  display: block;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 0;
+  background: transparent;
+  color: var(--fg);
+  text-align: left;
+  text-decoration: none;
+  font-size: 0.84rem;
+  cursor: pointer;
+}
+
+.legal-footer .email-option + .email-option {
+  border-top: 1px solid #1f2937;
+}
+
+.legal-footer .email-option:hover,
+.legal-footer .email-option:focus-visible {
+  background: rgb(42 130 196 / 16%);
+  color: #eff6ff;
+}
+
+.legal-footer-copy {
+  display: grid;
+  gap: 0.05rem;
+}
+
+.legal-footer-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+/* DEV NOTE: Legal-page footer mobile stack (<=700px). */
+@media (width <= 700px) {
+  .legal-footer-inner {
+    grid-template-areas:
+      'logo'
+      'contact'
+      'social'
+      'copy';
+  }
+
+  .legal-footer-logo-wrap {
+    grid-area: logo;
+    justify-self: start;
+  }
+
+  .legal-footer-contact {
+    grid-area: contact;
+  }
+
+  .legal-footer .social-links {
+    grid-area: social;
+  }
+
+  .legal-footer-copy {
+    grid-area: copy;
+  }
+}
+
+/* DEV NOTE: Shared toast UI for email-copy interactions across footers. */
+.email-toast {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid rgb(42 130 196 / 55%);
+  border-radius: 8px;
+  background: #0f172a;
+  color: #dbe8fa;
+  font-size: 0.84rem;
+  line-height: 1.2;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+  z-index: 40;
+}
+
+.email-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
