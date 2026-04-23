@@ -42,10 +42,10 @@ structuredDataScript.type = 'application/ld+json';
 structuredDataScript.text = JSON.stringify(structuredData);
 document.head.appendChild(structuredDataScript);
 
-const emailTrigger = document.getElementById('email-trigger');
-const emailMenu = document.getElementById('email-menu');
-const copyEmailButton = document.getElementById('copy-email-btn');
-const openMailOption = emailMenu?.querySelector('a[href^="mailto:"]') || null;
+const emailTrigger = document.querySelector('[data-email-trigger]');
+const emailMenu = document.querySelector('[data-email-menu]');
+const copyEmailButton = document.querySelector('[data-copy-email-btn]');
+const openMailOption = emailMenu?.querySelector('a[href^="mailto:"][data-email-option]') || null;
 
 function showEmailToast(message) {
   let toast = document.querySelector('.email-toast');
@@ -109,7 +109,7 @@ if (emailTrigger && emailMenu && copyEmailButton) {
 
   emailMenu.addEventListener('click', (event) => {
     const target = event.target;
-    if (target instanceof HTMLElement && target.classList.contains('email-option')) {
+    if (target instanceof HTMLElement && target.closest('[data-email-option]')) {
       closeEmailMenu();
     }
   });

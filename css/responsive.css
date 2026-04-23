@@ -69,7 +69,8 @@
     min-height: 192px;
   }
 
-  .footer-content {
+  /* Main Footer (Home + Service Pages) */
+  .main-footer-content {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
       'logo contact'
@@ -79,22 +80,22 @@
     align-items: start;
   }
 
-  .footer-contact {
+  .main-footer-contact {
     place-self: start end;
     text-align: right;
   }
 
-  .social-links {
+  .main-footer-social-links {
     margin-top: 0.2rem;
     place-self: start end;
   }
 
-  .legal-links {
+  .main-footer-legal-links {
     margin-top: 0;
     justify-self: start;
   }
 
-  .email-menu {
+  .main-footer-email-menu {
     left: auto;
     right: 0;
   }
@@ -119,6 +120,7 @@
     height: 335px;
   }
 
+  /* Contact Footer */
   .contact-footer-inner {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
@@ -128,16 +130,20 @@
     align-items: end;
   }
 
-  .contact-footer-inner p:first-of-type {
+  .contact-footer-inner > p:first-of-type {
     grid-area: text1;
   }
 
-  .contact-footer-inner p:last-of-type {
+  .contact-footer-inner > p:nth-of-type(2) {
     grid-area: text2;
   }
 
-  .contact-footer-inner .legal-footer-logo-wrap {
+  .contact-footer-inner .contact-footer-logo-wrap {
     grid-area: logo;
     place-self: end end;
+  }
+
+  .contact-footer-legal-links {
+    justify-self: end;
   }
 }
