@@ -42,10 +42,10 @@ structuredDataScript.type = 'application/ld+json';
 structuredDataScript.text = JSON.stringify(structuredData);
 document.head.appendChild(structuredDataScript);
 
-const emailTrigger = document.getElementById('email-trigger');
-const emailMenu = document.getElementById('email-menu');
-const copyEmailButton = document.getElementById('copy-email-btn');
-const openMailOption = emailMenu?.querySelector('a[href^="mailto:"]') || null;
+const emailTrigger = document.querySelector('[data-email-trigger]');
+const emailMenu = document.querySelector('[data-email-menu]');
+const copyEmailButton = document.querySelector('[data-copy-email-btn]');
+const openMailOption = emailMenu?.querySelector('a[href^="mailto:"][data-email-option]') || null;
 
 function showEmailToast(message) {
   let toast = document.querySelector('.email-toast');
@@ -109,7 +109,7 @@ if (emailTrigger && emailMenu && copyEmailButton) {
 
   emailMenu.addEventListener('click', (event) => {
     const target = event.target;
-    if (target instanceof HTMLElement && target.classList.contains('email-option')) {
+    if (target instanceof HTMLElement && target.closest('[data-email-option]')) {
       closeEmailMenu();
     }
   });
@@ -126,6 +126,181 @@ if (emailTrigger && emailMenu && copyEmailButton) {
       closeEmailMenu();
     }
   });
+}
+
+const contactTopicField = document.querySelector('.contact-topic-field');
+const nativeTopicSelect = contactTopicField?.querySelector('#topic');
+const customTopic = contactTopicField?.querySelector('[data-contact-topic]');
+
+if (contactTopicField && nativeTopicSelect && customTopic) {
+  const topicTrigger = customTopic.querySelector('.contact-topic-trigger');
+  const topicLabel = customTopic.querySelector('[data-contact-topic-label]');
+  const topicMenu = customTopic.querySelector('.contact-topic-menu');
+  const topicOptions = Array.from(customTopic.querySelectorAll('.contact-topic-option'));
+
+  if (topicTrigger && topicLabel && topicMenu && topicOptions.length > 0) {
+    customTopic.hidden = false;
+    contactTopicField.classList.add('is-topic-enhanced');
+
+    function closeTopicMenu({ focusTrigger = false } = {}) {
+      customTopic.classList.remove('is-open');
+      topicMenu.hidden = true;
+      topicTrigger.setAttribute('aria-expanded', 'false');
+      if (focusTrigger) {
+        topicTrigger.focus();
+      }
+    }
+
+    function syncTopicUi() {
+      const selectedOption = nativeTopicSelect.selectedOptions[0] || null;
+      const selectedValue = selectedOption?.value || '';
+      const selectedText = selectedOption?.textContent?.trim() || 'Select a topic';
+
+      topicLabel.textContent = selectedValue ? selectedText : 'Select a topic';
+      topicTrigger.setAttribute('aria-invalid', String(!selectedValue));
+
+      topicOptions.forEach((option, index) => {
+        const isSelected = option.dataset.value === selectedValue;
+        option.classList.toggle('is-selected', isSelected);
+        option.setAttribute('aria-selected', String(isSelected));
+        option.tabIndex = isSelected ? 0 : -1;
+
+        if (!selectedValue && index === 0) {
+          option.tabIndex = 0;
+        }
+      });
+    }
+
+    function openTopicMenu() {
+      customTopic.classList.add('is-open');
+      topicMenu.hidden = false;
+      topicTrigger.setAttribute('aria-expanded', 'true');
+
+      const activeOption = topicOptions.find((option) => option.classList.contains('is-selected')) || topicOptions[0];
+      if (activeOption) {
+        activeOption.focus();
+      }
+    }
+
+    function selectTopic(value) {
+      if (!value) {
+        return;
+      }
+      nativeTopicSelect.value = value;
+      nativeTopicSelect.dispatchEvent(new Event('change', { bubbles: true }));
+      closeTopicMenu({ focusTrigger: true });
+    }
+
+    function moveTopicFocus(step) {
+      const currentIndex = topicOptions.findIndex((option) => option === document.activeElement);
+      const nextIndex = currentIndex < 0 ? 0 : (currentIndex + step + topicOptions.length) % topicOptions.length;
+      topicOptions[nextIndex]?.focus();
+    }
+
+    syncTopicUi();
+
+    topicTrigger.addEventListener('click', () => {
+      if (topicMenu.hidden) {
+        openTopicMenu();
+        return;
+      }
+      closeTopicMenu();
+    });
+
+    topicTrigger.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openTopicMenu();
+      }
+    });
+
+    topicMenu.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) {
+        return;
+      }
+      const option = target.closest('.contact-topic-option');
+      if (option instanceof HTMLButtonElement) {
+        selectTopic(option.dataset.value || '');
+      }
+    });
+
+    topicMenu.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeTopicMenu({ focusTrigger: true });
+        return;
+      }
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        moveTopicFocus(1);
+        return;
+      }
+      if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        moveTopicFocus(-1);
+        return;
+      }
+      if (event.key === 'Home') {
+        event.preventDefault();
+        topicOptions[0]?.focus();
+        return;
+      }
+      if (event.key === 'End') {
+        event.preventDefault();
+        topicOptions[topicOptions.length - 1]?.focus();
+        return;
+      }
+      if (event.key === 'Enter' || event.key === ' ') {
+        const focusedOption = document.activeElement;
+        if (focusedOption instanceof HTMLButtonElement && focusedOption.classList.contains('contact-topic-option')) {
+          event.preventDefault();
+          selectTopic(focusedOption.dataset.value || '');
+        }
+      }
+    });
+
+    nativeTopicSelect.addEventListener('change', syncTopicUi);
+
+    const contactForm = nativeTopicSelect.form;
+    if (contactForm) {
+      contactForm.addEventListener('submit', (event) => {
+        if (nativeTopicSelect.value) {
+          return;
+        }
+        event.preventDefault();
+        openTopicMenu();
+      });
+
+      contactForm.addEventListener('reset', () => {
+        window.setTimeout(syncTopicUi, 0);
+      });
+    }
+
+    customTopic.addEventListener('focusout', () => {
+      window.setTimeout(() => {
+        if (!customTopic.contains(document.activeElement)) {
+          closeTopicMenu();
+        }
+      }, 0);
+    });
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof Node)) {
+        return;
+      }
+      if (!customTopic.contains(target)) {
+        closeTopicMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeTopicMenu();
+      }
+    });
+  }
 }
 
 const reviewsRotator = document.getElementById('reviews-rotator');

@@ -14,8 +14,6 @@
     <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png?v=2" />
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/pages.css" />
-    <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
   </head>
   <body class="legal-body">
     <header class="legal-header">
@@ -101,27 +99,10 @@
 
     <footer class="legal-footer">
       <div class="legal-container legal-footer-inner">
-        <div class="legal-footer-logo-wrap">
-          <img
-            class="legal-footer-logo"
-            src="assets/images/logo_negative.png"
-            alt="Electrode Repairs mark"
-            width="156" />
-        </div>
-        <address class="legal-footer-contact" aria-label="Electrode Repairs address and phone">
-          <a class="legal-footer-phone" href="tel:+14052686305">(405) 268-6305</a>
-          <a
-            class="legal-footer-address"
-            href="https://maps.google.com/?q=1025+N+Main+St,+Newcastle,+OK+73065"
-            target="_blank"
-            rel="noopener noreferrer">
-            1025 N Main St, Newcastle, OK 73065
-          </a>
-        </address>
-        <div class="social-links">
+        <div class="legal-footer-social-links">
           <a
             href="https://www.instagram.com/electrode_repairs/"
-            class="social-icon"
+            class="legal-footer-social-icon"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Electrode Repairs on Instagram">
@@ -132,7 +113,7 @@
           </a>
           <a
             href="https://www.facebook.com/ElectrodeRepairs"
-            class="social-icon"
+            class="legal-footer-social-icon"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Electrode Repairs on Facebook">
@@ -141,11 +122,11 @@
                 d="M13.5 22v-8h2.63l.4-3h-3.03V9.08c0-.87.24-1.46 1.5-1.46h1.6V4.94c-.78-.08-1.56-.12-2.34-.11-2.31 0-3.9 1.41-3.9 4v2.24H8v3h2.36v8h3.14Z" />
             </svg>
           </a>
-          <div class="email-actions">
+          <div class="legal-footer-email-actions">
             <button
               type="button"
-              class="social-icon email-trigger"
-              id="email-trigger"
+              class="legal-footer-social-icon legal-footer-email-trigger"
+              data-email-trigger
               aria-label="Email Electrode Repairs"
               aria-haspopup="true"
               aria-expanded="false">
@@ -154,15 +135,24 @@
                   d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5v-11Zm2.22-.75L12 10.23l6.78-4.48a1 1 0 0 0-.28-.04h-13a1 1 0 0 0-.28.04Zm14.28 1.42-7.08 4.67a.75.75 0 0 1-.84 0L4.5 7.17V17.5c0 .55.45 1 1 1h13c.55 0 1-.45 1-1V7.17Z" />
               </svg>
             </button>
-            <div class="email-menu" id="email-menu" hidden>
-              <a class="email-option" href="mailto:Info@electroderepairs.com">Open Email App</a>
-              <button type="button" class="email-option" id="copy-email-btn">Copy Email</button>
+            <div class="legal-footer-email-menu" data-email-menu hidden>
+              <a class="legal-footer-email-option" data-email-option href="mailto:Info@electroderepairs.com">
+                Open Email App
+              </a>
+              <button type="button" class="legal-footer-email-option" data-email-option data-copy-email-btn>
+                Copy Email
+              </button>
             </div>
           </div>
         </div>
-        <div class="legal-footer-copy">
-          <p>&copy; 2026 Electrode Repairs. All rights reserved.</p>
-          <p>Not affiliated with Apple, Inc., LG Corp. or Samsung Corp.</p>
+        <p>&copy; 2026 Electrode Repairs. All rights reserved.</p>
+        <p>Not affiliated with Apple, Inc., LG Corp. or Samsung Corp.</p>
+        <div class="legal-footer-logo-wrap">
+          <img
+            class="legal-footer-logo"
+            src="assets/images/logo_negative.png"
+            alt="Electrode Repairs mark"
+            width="156" />
         </div>
       </div>
     </footer>
