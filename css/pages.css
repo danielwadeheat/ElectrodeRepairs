@@ -1,3 +1,5 @@
+/* Mobile-first styles for pages other than home, that are not fully universal live here */
+
 * {
   box-sizing: border-box;
 }
@@ -506,6 +508,7 @@
 
 .contact-submit {
   --contact-submit-border-tone: rgb(42 130 196 / 45%);
+
   justify-self: start;
   padding: 0.7rem 1rem;
   border-radius: 8px;
@@ -650,91 +653,91 @@
 
 @supports not (offset-path: inset(0 round 8px)) {
   @keyframes contact-submit-led-dot {
-  0% {
-    top: 0;
-    left: 7px;
-  }
+    0% {
+      top: 0;
+      left: 7px;
+    }
 
-  34% {
-    top: 0;
-    left: calc(100% - 7px);
-  }
+    34% {
+      top: 0;
+      left: calc(100% - 7px);
+    }
 
-  37% {
-    top: 1px;
-    left: calc(100% - 3px);
-  }
+    37% {
+      top: 1px;
+      left: calc(100% - 3px);
+    }
 
-  40% {
-    top: 3px;
-    left: calc(100% - 1px);
-  }
+    40% {
+      top: 3px;
+      left: calc(100% - 1px);
+    }
 
-  43% {
-    top: 7px;
-    left: 100%;
-  }
+    43% {
+      top: 7px;
+      left: 100%;
+    }
 
-  49% {
-    top: calc(100% - 7px);
-    left: 100%;
-  }
+    49% {
+      top: calc(100% - 7px);
+      left: 100%;
+    }
 
-  52% {
-    top: calc(100% - 4px);
-    left: calc(100% - 1px);
-  }
+    52% {
+      top: calc(100% - 4px);
+      left: calc(100% - 1px);
+    }
 
-  55% {
-    top: calc(100% - 1px);
-    left: calc(100% - 4px);
-  }
+    55% {
+      top: calc(100% - 1px);
+      left: calc(100% - 4px);
+    }
 
-  58% {
-    top: 100%;
-    left: calc(100% - 7px);
-  }
+    58% {
+      top: 100%;
+      left: calc(100% - 7px);
+    }
 
-  92% {
-    top: 100%;
-    left: 7px;
-  }
+    92% {
+      top: 100%;
+      left: 7px;
+    }
 
-  95% {
-    top: calc(100% - 1px);
-    left: 4px;
-  }
+    95% {
+      top: calc(100% - 1px);
+      left: 4px;
+    }
 
-  96.5% {
-    top: calc(100% - 7px);
-    left: 0;
-  }
+    96.5% {
+      top: calc(100% - 7px);
+      left: 0;
+    }
 
-  98% {
-    top: 7px;
-    left: 0;
-  }
+    98% {
+      top: 7px;
+      left: 0;
+    }
 
-  99% {
-    top: 4px;
-    left: 1px;
-  }
+    99% {
+      top: 4px;
+      left: 1px;
+    }
 
-  99.5% {
-    top: 1px;
-    left: 4px;
-  }
+    99.5% {
+      top: 1px;
+      left: 4px;
+    }
 
-  99.9% {
-    top: 7px;
-    left: 0;
-  }
+    99.9% {
+      top: 7px;
+      left: 0;
+    }
 
-  100% {
-    top: 0;
-    left: 7px;
+    100% {
+      top: 0;
+      left: 7px;
+    }
   }
-}
 }
 
 .contact-note {
