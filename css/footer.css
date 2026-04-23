@@ -9,10 +9,10 @@ footer {
   grid-template-columns: 1fr;
   grid-template-areas:
     'logo'
-    'legal'
-    'disclaimer'
     'contact'
-    'social';
+    'social'
+    'legal'
+    'disclaimer';
   row-gap: 0.95rem;
 }
 
@@ -38,6 +38,7 @@ footer {
 }
 
 .footer-contact-link {
+  order: 2;
   color: #c4d1e0;
   text-decoration: none;
   font-size: 0.86rem;
@@ -45,6 +46,7 @@ footer {
 }
 
 .footer-phone {
+  order: 1;
   color: #dce8f6;
   font-weight: 600;
 }
