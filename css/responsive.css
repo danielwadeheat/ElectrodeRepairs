@@ -71,6 +71,49 @@
 
 }
 
+/* DEV NOTE: Legal-page footer layout (privacy_policy.html + terms_of_use.html) for >=701px. */
+@media (width >= 701px) {
+  .legal-footer {
+    padding: 1.1rem 0 1.3rem;
+  }
+
+  .legal-footer-inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'contact logo'
+      'social copy';
+    column-gap: 1rem;
+    row-gap: 0.55rem;
+    align-items: start;
+  }
+
+  .legal-footer-contact {
+    grid-area: contact;
+  }
+
+  .legal-footer .social-links {
+    grid-area: social;
+    margin-top: 0;
+  }
+
+  .legal-footer-logo-wrap {
+    grid-area: logo;
+    justify-self: end;
+  }
+
+  .legal-footer-copy {
+    grid-area: copy;
+    justify-self: end;
+    text-align: right;
+  }
+
+  .legal-footer .email-menu {
+    left: auto;
+    right: 0;
+  }
+}
+
+/* DEV NOTE: Homepage footer desktop/tablet layout for >=771px. */
 @media (width >= 771px) {
   .footer-content {
     grid-template-columns: minmax(0, 1fr) auto;
@@ -87,7 +130,7 @@
     text-align: right;
   }
 
-  .social-links {
+  .footer-content .social-links {
     margin-top: 0;
     place-self: end end;
   }
@@ -97,7 +140,7 @@
     justify-self: start;
   }
 
-  .email-menu {
+  .footer-content .email-menu {
     left: auto;
     right: 0;
   }
