@@ -143,6 +143,31 @@
   gap: 0.5rem;
 }
 
+.legal-footer-contact {
+  margin: 0;
+  display: grid;
+  gap: 0.25rem;
+  font-style: normal;
+}
+
+.legal-footer-contact-link {
+  color: #c4d1e0;
+  text-decoration: none;
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+
+.legal-footer-phone {
+  color: #dce8f6;
+  font-weight: 600;
+}
+
+.legal-footer-contact-link:hover,
+.legal-footer-contact-link:focus-visible {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
 .legal-footer-social-links {
   display: flex;
   align-items: center;
@@ -227,7 +252,14 @@
   color: #eff6ff;
 }
 
-.legal-footer p {
+.legal-footer-copy {
+  display: grid;
+  gap: 0.1rem;
+  justify-self: end;
+  text-align: right;
+}
+
+.legal-footer-copy p {
   margin: 0;
   color: var(--muted);
   font-size: 0.8rem;
@@ -235,7 +267,7 @@
 }
 
 .legal-footer-logo-wrap {
-  justify-self: start;
+  justify-self: end;
 }
 
 .legal-footer-logo {
@@ -1032,28 +1064,30 @@
   .legal-footer-inner {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
-      'social logo'
-      'text1 logo'
-      'text2 logo';
+      '. logo'
+      'contact logo'
+      'social copy';
     column-gap: 1rem;
-    align-items: end;
+    row-gap: 0.25rem;
+    align-items: start;
+  }
+
+  .legal-footer-contact {
+    grid-area: contact;
   }
 
   .legal-footer-social-links {
     grid-area: social;
+    align-self: end;
   }
 
-  .legal-footer-inner p:first-of-type {
-    grid-area: text1;
-  }
-
-  .legal-footer-inner p:last-of-type {
-    grid-area: text2;
+  .legal-footer-copy {
+    grid-area: copy;
   }
 
   .legal-footer-logo-wrap {
     grid-area: logo;
-    place-self: end end;
+    place-self: start end;
   }
 
   .contact-footer {
