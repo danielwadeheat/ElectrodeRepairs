@@ -82,6 +82,7 @@
 
   .main-footer-contact {
     place-self: start end;
+    justify-items: end;
     text-align: right;
   }
 
