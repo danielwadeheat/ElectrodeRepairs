@@ -73,10 +73,10 @@
   .main-footer-content {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
-      'logo contact'
-      'legal social'
-      'disclaimer social';
-    gap: 0.85rem 1.15rem;
+      'logo logo'
+      'disclaimer contact'
+      'legal social';
+    gap: 0.25rem 1.15rem;
     align-items: start;
   }
 
@@ -86,7 +86,7 @@
   }
 
   .main-footer-social-links {
-    margin-top: 0.2rem;
+    margin-top: 0;
     place-self: start end;
   }
 
