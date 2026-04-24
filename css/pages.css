@@ -896,7 +896,7 @@
 
 .contact-social-link-instagram:hover .contact-social-icon-path,
 .contact-social-link-instagram:focus-visible .contact-social-icon-path {
-  fill: url(#contact-instagram-gradient);
+  fill: url('#contact-instagram-gradient');
 }
 
 .contact-social-icon-facebook-circle {
@@ -921,24 +921,20 @@
 }
 
 .contact-social-link-instagram:hover .contact-social-label,
-.contact-social-link-instagram:focus-visible .contact-social-label,
-.contact-social-link-instagram:hover .contact-social-label span,
-.contact-social-link-instagram:focus-visible .contact-social-label span {
+.contact-social-link-instagram:focus-visible .contact-social-label {
   color: #f56040;
   background: linear-gradient(90deg, #f58529 0%, #f56040 32%, #fd1d1d 58%, #c13584 78%, #833ab4 100%);
   background-clip: text;
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .contact-social-link-facebook:hover .contact-social-label,
-.contact-social-link-facebook:focus-visible .contact-social-label,
-.contact-social-link-facebook:hover .contact-social-label span,
-.contact-social-link-facebook:focus-visible .contact-social-label span {
+.contact-social-link-facebook:focus-visible .contact-social-label {
   color: #0070c0;
   background: linear-gradient(90deg, #005a9e 0%, #0070c0 38%, #2b93df 68%, #5bc0ff 100%);
   background-clip: text;
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
