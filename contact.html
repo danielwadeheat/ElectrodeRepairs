@@ -119,7 +119,28 @@
 
           <div class="contact-list">
             <p><strong>Phone:</strong> <a href="tel:+14052686305">(405) 268-6305</a></p>
-            <p><strong>Email:</strong> <a href="mailto:Info@electroderepairs.com">Info@electroderepairs.com</a></p>
+            <p>
+              <strong>Email:</strong>
+              <span class="contact-email-actions">
+                <button
+                  type="button"
+                  class="contact-email-trigger"
+                  data-email-trigger
+                  aria-label="Email Electrode Repairs"
+                  aria-haspopup="true"
+                  aria-expanded="false">
+                  Info@electroderepairs.com
+                </button>
+                <span class="contact-email-menu" data-email-menu hidden>
+                  <a class="contact-email-option" data-email-option href="mailto:Info@electroderepairs.com">
+                    Open Email App
+                  </a>
+                  <button type="button" class="contact-email-option" data-email-option data-copy-email-btn>
+                    Copy Email
+                  </button>
+                </span>
+              </span>
+            </p>
             <p>
               <strong>Address:</strong>
               <a

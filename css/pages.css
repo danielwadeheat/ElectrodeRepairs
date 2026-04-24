@@ -761,14 +761,74 @@
   color: #eff6ff;
 }
 
+.contact-email-actions {
+  position: relative;
+  display: inline-flex;
+}
+
+.contact-email-trigger {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: #9dd8ff;
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+}
+
 .contact-list a {
   color: #9dd8ff;
   text-decoration: none;
 }
 
+.contact-email-trigger:hover,
+.contact-email-trigger:focus-visible,
 .contact-list a:hover,
 .contact-list a:focus-visible {
   text-decoration: underline;
+}
+
+.contact-email-menu {
+  position: absolute;
+  left: 0;
+  right: auto;
+  top: calc(100% + 0.5rem);
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  border: 1px solid #2a3a52;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #111827 0%, #0b1220 100%);
+  box-shadow: 0 12px 24px rgb(5 12 22 / 45%);
+  overflow: hidden;
+  z-index: 25;
+}
+
+.contact-email-menu[hidden] {
+  display: none;
+}
+
+.contact-email-option {
+  display: block;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 0;
+  background: transparent;
+  color: var(--fg);
+  text-align: left;
+  text-decoration: none;
+  font-size: 0.84rem;
+  cursor: pointer;
+}
+
+.contact-email-option + .contact-email-option {
+  border-top: 1px solid #1f2937;
+}
+
+.contact-email-option:hover,
+.contact-email-option:focus-visible {
+  background: rgb(42 130 196 / 16%);
+  color: #eff6ff;
 }
 
 .contact-map-wrap {
