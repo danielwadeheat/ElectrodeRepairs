@@ -241,6 +241,12 @@ p {
   text-align: center;
 }
 
+.why-us-actions {
+  margin-top: 1.15rem;
+  display: flex;
+  justify-content: center;
+}
+
 .reviews {
   margin-top: 1.6rem;
   padding: 1.25rem;
