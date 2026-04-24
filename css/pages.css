@@ -867,21 +867,79 @@
   align-items: center;
   gap: 0.45rem;
   width: fit-content;
-  color: #d7e4f5;
+  color: #eff6ff;
   text-decoration: none;
 }
 
 .contact-social-links a:hover,
 .contact-social-links a:focus-visible {
-  color: #9dd8ff;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .contact-social-icon {
   width: 15px;
   height: 15px;
-  fill: currentcolor;
   flex-shrink: 0;
+}
+
+.contact-social-icon-path {
+  fill: currentcolor;
+}
+
+.contact-social-label {
+  display: inline-block;
+}
+
+.contact-social-highlight {
+  color: #9dd8ff;
+}
+
+.contact-social-link-instagram:hover .contact-social-icon-path,
+.contact-social-link-instagram:focus-visible .contact-social-icon-path {
+  fill: url(#contact-instagram-gradient);
+}
+
+.contact-social-icon-facebook-circle {
+  fill: transparent;
+  stroke: currentcolor;
+  stroke-width: 1.5;
+}
+
+.contact-social-icon-facebook-glyph {
+  fill: currentcolor;
+}
+
+.contact-social-link-facebook:hover .contact-social-icon-facebook-circle,
+.contact-social-link-facebook:focus-visible .contact-social-icon-facebook-circle {
+  fill: #1877f2;
+  stroke: #1877f2;
+}
+
+.contact-social-link-facebook:hover .contact-social-icon-facebook-glyph,
+.contact-social-link-facebook:focus-visible .contact-social-icon-facebook-glyph {
+  fill: #fff;
+}
+
+.contact-social-link-instagram:hover .contact-social-label,
+.contact-social-link-instagram:focus-visible .contact-social-label,
+.contact-social-link-instagram:hover .contact-social-label span,
+.contact-social-link-instagram:focus-visible .contact-social-label span {
+  color: #f56040;
+  background: linear-gradient(90deg, #f58529 0%, #f56040 32%, #fd1d1d 58%, #c13584 78%, #833ab4 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contact-social-link-facebook:hover .contact-social-label,
+.contact-social-link-facebook:focus-visible .contact-social-label,
+.contact-social-link-facebook:hover .contact-social-label span,
+.contact-social-link-facebook:focus-visible .contact-social-label span {
+  color: #0070c0;
+  background: linear-gradient(90deg, #005a9e 0%, #0070c0 38%, #2b93df 68%, #5bc0ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Contact Footer */
