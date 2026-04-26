@@ -119,7 +119,28 @@
 
           <div class="contact-list">
             <p><strong>Phone:</strong> <a href="tel:+14052686305">(405) 268-6305</a></p>
-            <p><strong>Email:</strong> <a href="mailto:Info@electroderepairs.com">Info@electroderepairs.com</a></p>
+            <p>
+              <strong>Email:</strong>
+              <span class="contact-email-actions">
+                <button
+                  type="button"
+                  class="contact-email-trigger"
+                  data-email-trigger
+                  aria-label="Email Electrode Repairs"
+                  aria-haspopup="true"
+                  aria-expanded="false">
+                  Info@electroderepairs.com
+                </button>
+                <span class="contact-email-menu" data-email-menu hidden>
+                  <a class="contact-email-option" data-email-option href="mailto:Info@electroderepairs.com">
+                    Open Email App
+                  </a>
+                  <button type="button" class="contact-email-option" data-email-option data-copy-email-btn>
+                    Copy Email
+                  </button>
+                </span>
+              </span>
+            </p>
             <p>
               <strong>Address:</strong>
               <a
@@ -143,19 +164,43 @@
           <div class="contact-social" aria-labelledby="social-heading">
             <h3 id="social-heading">Social Media</h3>
             <div class="contact-social-links">
-              <a href="https://www.instagram.com/electrode_repairs/" target="_blank" rel="noopener noreferrer">
+              <a
+                class="contact-social-link contact-social-link-instagram"
+                href="https://www.instagram.com/electrode_repairs/"
+                target="_blank"
+                rel="noopener noreferrer">
                 <svg class="contact-social-icon" viewBox="0 0 24 24" role="img" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="contact-instagram-gradient" x1="0%" y1="50%" x2="100%" y2="50%">
+                      <stop offset="0%" stop-color="#f58529" />
+                      <stop offset="32%" stop-color="#f56040" />
+                      <stop offset="58%" stop-color="#fd1d1d" />
+                      <stop offset="78%" stop-color="#c13584" />
+                      <stop offset="100%" stop-color="#833ab4" />
+                    </linearGradient>
+                  </defs>
                   <path
+                    class="contact-social-icon-path"
                     d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm8.88 1.62a1.12 1.12 0 1 1 0 2.25 1.12 1.12 0 0 1 0-2.25ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" />
                 </svg>
-                <span>Instagram: @electrode_repairs</span>
+                <span class="contact-social-label">
+                  <span>Instagram: </span><span class="contact-social-highlight">@electrode_repairs</span>
+                </span>
               </a>
-              <a href="https://www.facebook.com/ElectrodeRepairs" target="_blank" rel="noopener noreferrer">
+              <a
+                class="contact-social-link contact-social-link-facebook"
+                href="https://www.facebook.com/ElectrodeRepairs"
+                target="_blank"
+                rel="noopener noreferrer">
                 <svg class="contact-social-icon" viewBox="0 0 24 24" role="img" aria-hidden="true">
+                  <circle class="contact-social-icon-facebook-circle" cx="12" cy="12" r="9.3" />
                   <path
-                    d="M13.5 22v-8h2.63l.4-3h-3.03V9.08c0-.87.24-1.46 1.5-1.46h1.6V4.94c-.78-.08-1.56-.12-2.34-.11-2.31 0-3.9 1.41-3.9 4v2.24H8v3h2.36v8h3.14Z" />
+                    class="contact-social-icon-facebook-glyph"
+                    d="M13.31 19.9v-6.55h2.16l.34-2.63h-2.5V9.04c0-.76.21-1.27 1.24-1.27h1.34V5.48a15.6 15.6 0 0 0-1.98-.11c-1.95 0-3.29 1.2-3.29 3.39v1.96h-2.1v2.63h2.1v6.55h2.69Z" />
                 </svg>
-                <span>Facebook: Electrode Repairs</span>
+                <span class="contact-social-label">
+                  <span>Facebook: </span><span class="contact-social-highlight">Electrode Repairs</span>
+                </span>
               </a>
             </div>
           </div>

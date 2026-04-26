@@ -11,7 +11,8 @@
   grid-template-columns: minmax(0, 1fr) auto;
   grid-template-areas:
     'logo logo'
-    'contact social'
+    'contact contact'
+    'social social'
     'legal legal'
     'disclaimer disclaimer';
   row-gap: 0.55rem;
@@ -34,6 +35,7 @@
   margin: 0;
   display: grid;
   gap: 0.25rem;
+  justify-items: start;
   font-style: normal;
   place-self: start start;
 }
@@ -69,7 +71,7 @@
   align-items: center;
   gap: 0.6rem;
   margin-top: 0;
-  place-self: center end;
+  place-self: start start;
 }
 
 .main-footer-social-icon {
