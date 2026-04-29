@@ -546,11 +546,9 @@ if (modernQuoteForm) {
       ],
       tablet: [
         { key: 'tablet-ipad', label: 'iPad' },
-        { key: 'tablet-ipad-air', label: 'iPad Air' },
-        { key: 'tablet-ipad-pro', label: 'iPad Pro' },
-        { key: 'tablet-galaxy-tab', label: 'Samsung Galaxy Tab' },
+        { key: 'tablet-samsung', label: 'Samsung Tablet' },
         { key: 'tablet-fire', label: 'Amazon Fire Tablet' },
-        { key: 'tablet-other', label: 'Other Tablet', other: true },
+        { key: 'tablet-other-type', label: 'Other Tablet', other: true },
       ],
       laptop: [
         { key: 'laptop-macbook-air', label: 'MacBook Air' },
@@ -790,6 +788,52 @@ if (modernQuoteForm) {
       ],
       'android-other-brand': [{ key: 'android-other', label: 'Other Android Model', other: true }],
     },
+    tabletModels: {
+      'tablet-ipad': [
+        { key: 'ipad-pro-13-m4', label: 'iPad Pro 13-inch (M4)' },
+        { key: 'ipad-pro-11-m4', label: 'iPad Pro 11-inch (M4)' },
+        { key: 'ipad-air-13-m2', label: 'iPad Air 13-inch (M2)' },
+        { key: 'ipad-air-11-m2', label: 'iPad Air 11-inch (M2)' },
+        { key: 'ipad-10th-gen', label: 'iPad (10th Gen)' },
+        { key: 'ipad-9th-gen', label: 'iPad (9th Gen)' },
+        { key: 'ipad-8th-gen', label: 'iPad (8th Gen)' },
+        { key: 'ipad-7th-gen', label: 'iPad (7th Gen)' },
+        { key: 'ipad-6th-gen', label: 'iPad (6th Gen)' },
+        { key: 'ipad-5th-gen', label: 'iPad (5th Gen)' },
+        { key: 'ipad-air-5th-gen', label: 'iPad Air (5th Gen)' },
+        { key: 'ipad-air-4th-gen', label: 'iPad Air (4th Gen)' },
+        { key: 'ipad-air-3rd-gen', label: 'iPad Air (3rd Gen)' },
+        { key: 'ipad-air-2', label: 'iPad Air 2' },
+        { key: 'ipad-air-1', label: 'iPad Air (1st Gen)' },
+        { key: 'ipad-mini-7-a17-pro', label: 'iPad mini (A17 Pro)' },
+        { key: 'ipad-mini-6th-gen', label: 'iPad mini (6th Gen)' },
+        { key: 'ipad-mini-5th-gen', label: 'iPad mini (5th Gen)' },
+        { key: 'ipad-mini-4', label: 'iPad mini 4' },
+        { key: 'ipad-mini-3', label: 'iPad mini 3' },
+        { key: 'ipad-mini-2', label: 'iPad mini 2' },
+        { key: 'ipad-mini-1', label: 'iPad mini (1st Gen)' },
+        { key: 'ipad-pro-12-9-6th-gen', label: 'iPad Pro 12.9-inch (6th Gen)' },
+        { key: 'ipad-pro-12-9-5th-gen', label: 'iPad Pro 12.9-inch (5th Gen)' },
+        { key: 'ipad-pro-12-9-4th-gen', label: 'iPad Pro 12.9-inch (4th Gen)' },
+        { key: 'ipad-pro-12-9-3rd-gen', label: 'iPad Pro 12.9-inch (3rd Gen)' },
+        { key: 'ipad-pro-12-9-2nd-gen', label: 'iPad Pro 12.9-inch (2nd Gen)' },
+        { key: 'ipad-pro-12-9-1st-gen', label: 'iPad Pro 12.9-inch (1st Gen)' },
+        { key: 'ipad-pro-11-4th-gen', label: 'iPad Pro 11-inch (4th Gen)' },
+        { key: 'ipad-pro-11-3rd-gen', label: 'iPad Pro 11-inch (3rd Gen)' },
+        { key: 'ipad-pro-11-2nd-gen', label: 'iPad Pro 11-inch (2nd Gen)' },
+        { key: 'ipad-pro-11-1st-gen', label: 'iPad Pro 11-inch (1st Gen)' },
+        { key: 'ipad-pro-10-5', label: 'iPad Pro 10.5-inch' },
+        { key: 'ipad-pro-9-7', label: 'iPad Pro 9.7-inch' },
+        { key: 'ipad-4th-gen', label: 'iPad (4th Gen)' },
+        { key: 'ipad-3rd-gen', label: 'iPad (3rd Gen)' },
+        { key: 'ipad-2', label: 'iPad 2' },
+        { key: 'ipad-1', label: 'iPad (1st Gen)' },
+        { key: 'ipad-other', label: 'Other iPad Model', other: true },
+      ],
+      'tablet-samsung': [{ key: 'tablet-samsung-generic', label: 'Samsung Tablet' }],
+      'tablet-fire': [{ key: 'tablet-fire-generic', label: 'Amazon Fire Tablet' }],
+      'tablet-other-type': [{ key: 'tablet-other-model', label: 'Other Tablet Model', other: true }],
+    },
     issues: {
       iphone: [
         issueCatalog.screen_damage,
@@ -854,6 +898,7 @@ if (modernQuoteForm) {
     device: null,
     model: null,
     androidBrand: null,
+    tabletType: null,
     modelCustom: '',
     issues: [],
     issueCustom: '',
@@ -962,6 +1007,7 @@ if (modernQuoteForm) {
         state.device = device;
         state.model = null;
         state.androidBrand = null;
+        state.tabletType = null;
         state.modelCustom = '';
         state.issues = [];
         state.issueCustom = '';
@@ -984,6 +1030,7 @@ if (modernQuoteForm) {
     }
 
     const isAndroid = state.device.key === 'android';
+    const isTablet = state.device.key === 'tablet';
     if (isAndroid && !state.androidBrand) {
       modelTitle.textContent = 'Choose Android Brand';
       const brandList = quoteData.models.android;
@@ -1018,10 +1065,45 @@ if (modernQuoteForm) {
       return;
     }
 
-    modelTitle.textContent = 'Choose Model';
+    if (isTablet && !state.tabletType) {
+      modelTitle.textContent = 'Choose Tablet Type';
+      const tabletTypeList = quoteData.models.tablet;
+      tabletTypeList.forEach((tabletType) => {
+        const isOther = Boolean(tabletType.other);
+        const button = makeChoiceButton({
+          label: tabletType.label,
+          image: '',
+          group: 'tablet-type',
+          key: tabletType.key,
+          isOther,
+          showImage: false,
+        });
+        if (state.tabletType === tabletType.key) {
+          button.classList.add('is-selected');
+        }
+        button.addEventListener('click', () => {
+          state.tabletType = tabletType.key;
+          state.model = null;
+          state.modelCustom = '';
+          state.issues = [];
+          state.issueCustom = '';
+          modelCustomInput.value = '';
+          issueCustomInput.value = '';
+          renderModels();
+          renderIssues();
+        });
+        modelGrid.appendChild(button);
+      });
+      modelCustomWrap.hidden = true;
+      return;
+    }
+
+    modelTitle.textContent = isTablet && state.tabletType === 'tablet-ipad' ? 'Choose iPad Model' : 'Choose Model';
     const modelList = isAndroid
       ? quoteData.androidModels[state.androidBrand] || []
-      : quoteData.models[state.device.key] || [];
+      : isTablet
+        ? quoteData.tabletModels[state.tabletType] || []
+        : quoteData.models[state.device.key] || [];
     modelList.forEach((model, index) => {
       const isOther = Boolean(model.other);
       const button = makeChoiceButton({
@@ -1112,6 +1194,9 @@ if (modernQuoteForm) {
     }
     if (step === 2) {
       if (state.device?.key === 'android' && !state.androidBrand) {
+        return false;
+      }
+      if (state.device?.key === 'tablet' && !state.tabletType) {
         return false;
       }
       if (!state.model) {
