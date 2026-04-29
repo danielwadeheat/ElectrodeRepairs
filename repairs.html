@@ -124,10 +124,10 @@
       <section id="instant-quote" class="quote-workbench" aria-labelledby="quote-workbench-title">
         <div class="quote-workbench-copy">
           <p class="repair-kicker">Instant Quote Widget</p>
-          <h2 id="quote-workbench-title">Complete repair intake with all original quote options</h2>
+          <h2 id="quote-workbench-title">Complete repair intake with a full modern quote flow</h2>
           <p>
-            This is the full Electrode Repairs quote flow used on the previous site, now embedded into the new design so
-            your original option set stays intact.
+            The previous embedded widget has been replaced with an in-page quote system so Other/Desktop requests can
+            always continue from Device to Get Quote.
           </p>
           <ul class="quote-option-list">
             <li>Device categories: iPhone, Android Phone, Tablet, Laptop, Gaming Console, Desktop Services, Other</li>
@@ -135,15 +135,139 @@
             <li>Quote delivery options: SMS Text (Instant), Phone Call, Email (Instant)</li>
             <li>Customer fields: Full Name, Email, Phone Number, Description of Issue</li>
           </ul>
+          <p class="quote-image-note">
+            You can swap card images later by editing the widget data object in this file and pointing each item to your
+            preferred SVG/JPG asset path.
+          </p>
         </div>
-        <div class="quote-iframe-wrap">
+        <div class="quote-widget-shell">
+          <ol class="quote-stepper" aria-label="Quote progress">
+            <li class="is-active" data-step-indicator="1">Device</li>
+            <li data-step-indicator="2">Model</li>
+            <li data-step-indicator="3">Issue</li>
+            <li data-step-indicator="4">Details</li>
+            <li data-step-indicator="5">Get Quote</li>
+          </ol>
+
+          <form
+            id="modern-quote-form"
+            class="modern-quote-form"
+            method="post"
+            action="https://widget.electroderepairs.com/function.php"
+            target="modern-quote-submit-frame">
+            <section class="quote-step-panel is-active" data-step-panel="1" aria-labelledby="quote-device-title">
+              <h3 id="quote-device-title">Choose Device Type</h3>
+              <div class="quote-choice-grid" id="quote-device-grid"></div>
+            </section>
+
+            <section class="quote-step-panel" data-step-panel="2" aria-labelledby="quote-model-title" hidden>
+              <h3 id="quote-model-title">Choose Model</h3>
+              <div class="quote-choice-grid quote-choice-grid-model" id="quote-model-grid"></div>
+              <div class="quote-custom-input" id="quote-model-custom-wrap" hidden>
+                <label for="quote-model-custom">Type device/model name</label>
+                <input
+                  id="quote-model-custom"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="Example: Custom desktop build, iPad Pro 11, other model" />
+              </div>
+            </section>
+
+            <section class="quote-step-panel" data-step-panel="3" aria-labelledby="quote-issue-title" hidden>
+              <h3 id="quote-issue-title">Select Repair Issue(s)</h3>
+              <p class="quote-microcopy">Select one or more issues to continue.</p>
+              <div class="quote-choice-grid quote-choice-grid-issue" id="quote-issue-grid"></div>
+              <div class="quote-custom-input" id="quote-issue-custom-wrap" hidden>
+                <label for="quote-issue-custom">Describe the custom issue</label>
+                <input
+                  id="quote-issue-custom"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="Example: Random shutdown, artifacting, custom hardware issue" />
+              </div>
+            </section>
+
+            <section class="quote-step-panel" data-step-panel="4" aria-labelledby="quote-details-title" hidden>
+              <h3 id="quote-details-title">Your Contact Details</h3>
+              <fieldset class="quote-medium-fieldset">
+                <legend>How should we send your quote?</legend>
+                <label><input type="radio" name="medium" value="sms" checked /> SMS Text (Instant)</label>
+                <label><input type="radio" name="medium" value="call" /> Phone Call</label>
+                <label><input type="radio" name="medium" value="email" /> Email (Instant)</label>
+              </fieldset>
+
+              <div class="quote-field-grid">
+                <label class="quote-field">
+                  <span>Full Name</span>
+                  <input id="quote-name" name="name" type="text" autocomplete="name" required />
+                </label>
+                <label class="quote-field">
+                  <span>Email</span>
+                  <input id="quote-email" name="email" type="email" autocomplete="email" required />
+                </label>
+                <label class="quote-field quote-field-full">
+                  <span>Phone Number</span>
+                  <input id="quote-phone" name="phone" type="tel" autocomplete="tel" required />
+                </label>
+                <label class="quote-field quote-field-full">
+                  <span>Description of Issue (Optional)</span>
+                  <textarea
+                    id="quote-message"
+                    name="message"
+                    rows="5"
+                    placeholder="Share any additional details that help us quote accurately."></textarea>
+                </label>
+              </div>
+            </section>
+
+            <section class="quote-step-panel" data-step-panel="5" aria-labelledby="quote-review-title" hidden>
+              <h3 id="quote-review-title">Review and Submit</h3>
+              <dl class="quote-review-list">
+                <div>
+                  <dt>Device</dt>
+                  <dd id="quote-review-device">-</dd>
+                </div>
+                <div>
+                  <dt>Model</dt>
+                  <dd id="quote-review-model">-</dd>
+                </div>
+                <div>
+                  <dt>Issue</dt>
+                  <dd id="quote-review-issue">-</dd>
+                </div>
+                <div>
+                  <dt>Quote Method</dt>
+                  <dd id="quote-review-medium">-</dd>
+                </div>
+              </dl>
+              <p class="quote-microcopy">Submit to send this request into the repair quote system.</p>
+            </section>
+
+            <div class="quote-nav">
+              <button class="cta cta-secondary" type="button" id="quote-back-btn">Back</button>
+              <button class="cta" type="button" id="quote-next-btn">Continue</button>
+              <button class="cta" type="submit" id="quote-submit-btn" hidden>Get Quote Now</button>
+            </div>
+
+            <!-- cspell:ignore artifacting modalname modalid repairoptionname repairoptionid -->
+            <input type="hidden" name="devicename" id="quote-hidden-device-name" />
+            <input type="hidden" name="deviceid" id="quote-hidden-device-id" />
+            <input type="hidden" name="modalname" id="quote-hidden-model-name" />
+            <input type="hidden" name="repairoptionname" id="quote-hidden-issue-name" />
+            <input type="hidden" name="modalid" id="quote-hidden-model-id" value="000" />
+            <input type="hidden" name="repairoptionid" id="quote-hidden-issue-id" value="000" />
+            <input type="hidden" name="modelNameInput" id="quote-hidden-model-input" />
+            <input type="hidden" name="getLead" value="getLead" />
+          </form>
+
+          <p class="quote-submit-status" id="quote-submit-status" hidden>
+            Quote request submitted. If you do not hear back quickly, call (405) 268-6305.
+          </p>
           <iframe
-            id="repair-quote-widget"
-            class="quote-iframe"
-            src="https://widget.electroderepairs.com/"
-            title="Electrode Repairs instant quote widget"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+            name="modern-quote-submit-frame"
+            title="Repair quote submission target"
+            class="quote-submit-frame"
+            hidden></iframe>
         </div>
       </section>
 
@@ -176,7 +300,8 @@
                   <rect class="icon-bg" x="1.6" y="1.6" width="20.8" height="20.8" rx="6"></rect>
                   <circle cx="12" cy="8.2" r="3.1"></circle>
                   <path d="M6.5 20v-1.1a5.5 5.5 0 0 1 11 0V20"></path>
-                  <path d="m17.6 12.6 1.2 1.2 2.2-.1-.1 2.1 1.2 1.3-1.9 1 .1 2.1-2.2-.1-1.2 1.2-1.1-1.9-2 .1.1-2.2-1.8-1 1.8-.9-.1-2.2 2 .1Z"></path>
+                  <path
+                    d="m17.6 12.6 1.2 1.2 2.2-.1-.1 2.1 1.2 1.3-1.9 1 .1 2.1-2.2-.1-1.2 1.2-1.1-1.9-2 .1.1-2.2-1.8-1 1.8-.9-.1-2.2 2 .1Z"></path>
                 </svg>
               </span>
             </h3>
@@ -201,7 +326,8 @@
               <span class="repair-assurance-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" focusable="false">
                   <rect class="icon-bg" x="1.6" y="1.6" width="20.8" height="20.8" rx="6"></rect>
-                  <path d="M4 6.8A2.8 2.8 0 0 1 6.8 4h10.4A2.8 2.8 0 0 1 20 6.8v6.4a2.8 2.8 0 0 1-2.8 2.8H11l-3.9 3v-3H6.8A2.8 2.8 0 0 1 4 13.2Z"></path>
+                  <path
+                    d="M4 6.8A2.8 2.8 0 0 1 6.8 4h10.4A2.8 2.8 0 0 1 20 6.8v6.4a2.8 2.8 0 0 1-2.8 2.8H11l-3.9 3v-3H6.8A2.8 2.8 0 0 1 4 13.2Z"></path>
                   <path d="M8 8.6h8M8 11.3h5.2"></path>
                 </svg>
               </span>
@@ -289,38 +415,6 @@
       </div>
     </footer>
 
-    <!-- cspell:ignore scrollto -->
-    <script>
-      (function () {
-        const widget = document.getElementById('repair-quote-widget');
-        if (!widget) {
-          return;
-        }
-
-        function handleMessage(event) {
-          if (event.origin !== 'https://widget.electroderepairs.com') {
-            return;
-          }
-
-          if (typeof event.data !== 'string') {
-            return;
-          }
-
-          if (event.data.startsWith('resize::')) {
-            const nextHeight = Number.parseInt(event.data.replace('resize::', ''), 10);
-            if (Number.isFinite(nextHeight)) {
-              widget.style.height = `${Math.max(nextHeight, 740)}px`;
-            }
-          }
-
-          if (event.data.startsWith('scrollto::')) {
-            widget.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }
-
-        window.addEventListener('message', handleMessage);
-      })();
-    </script>
     <script src="script.js"></script>
   </body>
 </html>
