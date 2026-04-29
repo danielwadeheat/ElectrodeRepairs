@@ -269,6 +269,19 @@
   gap: 0.1rem;
 }
 
+.about-story-image-wrap {
+  margin: 1rem 0 0;
+}
+
+.about-story-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid #2e4159;
+  box-shadow: 0 10px 22px rgb(4 10 20 / 28%);
+}
+
 .about-grid-two {
   display: grid;
   gap: 1rem;
@@ -1319,6 +1332,19 @@
   background: linear-gradient(90deg, #005a9e 0%, #0070c0 38%, #2b93df 68%, #5bc0ff 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.contact-storefront-wrap {
+  margin: 1rem 0 0;
+}
+
+.contact-storefront-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid #2e4159;
+  box-shadow: 0 10px 22px rgb(4 10 20 / 28%);
 }
 
 /* Contact Footer */
