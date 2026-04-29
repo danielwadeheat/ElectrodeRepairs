@@ -740,6 +740,7 @@ if (modernQuoteForm) {
       indicator.classList.toggle('is-done', indicatorStep < state.step);
     });
     backBtn.disabled = state.step === 1;
+    backBtn.hidden = state.step === 1;
     nextBtn.hidden = state.step === 5;
     if (nav) {
       nav.hidden = state.step === 5;

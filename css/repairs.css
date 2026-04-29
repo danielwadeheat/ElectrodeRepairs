@@ -585,6 +585,10 @@
   display: none !important;
 }
 
+.quote-nav button[hidden] {
+  display: none !important;
+}
+
 .quote-final-actions {
   margin-top: 0.9rem;
   display: flex;
