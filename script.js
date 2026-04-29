@@ -413,6 +413,7 @@ if (modernQuoteForm) {
   const deviceGrid = document.getElementById('quote-device-grid');
   const modelGrid = document.getElementById('quote-model-grid');
   const modelTitle = document.getElementById('quote-model-title');
+  const modelContextImage = document.getElementById('quote-model-context-image');
   const issueGrid = document.getElementById('quote-issue-grid');
   const modelCustomWrap = document.getElementById('quote-model-custom-wrap');
   const modelCustomInput = document.getElementById('quote-model-custom');
@@ -469,6 +470,15 @@ if (modernQuoteForm) {
   function imagePath(type, key) {
     return `${quoteImageBase}/${type}/${key}.svg`;
   }
+
+  const modelContextImages = {
+    iphone: 'assets/images/quote-widget/model-context/iphone-family.svg',
+    samsung: 'assets/images/quote-widget/model-context/samsung-family.svg',
+    google: 'assets/images/quote-widget/model-context/google-family.svg',
+    oneplus: 'assets/images/quote-widget/model-context/oneplus-family.svg',
+    lg: 'assets/images/quote-widget/model-context/lg-family.svg',
+    motorola: 'assets/images/quote-widget/model-context/motorola-family.svg',
+  };
 
   const quoteData = {
     devices: [
@@ -872,7 +882,7 @@ if (modernQuoteForm) {
     });
   }
 
-  function makeChoiceButton({ label, image, group, key, isOther = false }) {
+  function makeChoiceButton({ label, image, group, key, isOther = false, showImage = true }) {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'quote-choice';
@@ -880,14 +890,59 @@ if (modernQuoteForm) {
     button.dataset.value = label;
     button.dataset.key = key;
     button.dataset.other = String(isOther);
-    button.innerHTML = `
+    button.innerHTML = showImage
+      ? `
       <span class="quote-choice-media"><img src="${image}" alt="" loading="lazy" /></span>
       <span class="quote-choice-label">${label}</span>
+    `
+      : `
+      <span class="quote-choice-label">${label}</span>
     `;
+    if (!showImage) {
+      button.classList.add('quote-choice-text-only');
+    }
     if (isOther) {
       button.classList.add('quote-choice-other');
     }
     return button;
+  }
+
+  function updateModelContextImage() {
+    if (!modelContextImage) {
+      return;
+    }
+    if (!state.device) {
+      modelContextImage.src = '';
+      modelContextImage.alt = '';
+      return;
+    }
+
+    let src = imagePath('devices', state.device.key);
+    let alt = `${state.device.label} model category preview`;
+
+    if (state.device.key === 'iphone') {
+      src = modelContextImages.iphone;
+      alt = 'iPhone model family preview';
+    } else if (state.device.key === 'android') {
+      const brandMap = {
+        'android-samsung': ['samsung', 'Samsung model family preview'],
+        'android-google': ['google', 'Google Pixel model family preview'],
+        'android-oneplus': ['oneplus', 'OnePlus model family preview'],
+        'android-lg': ['lg', 'LG model family preview'],
+        'android-motorola': ['motorola', 'Motorola model family preview'],
+      };
+      const selectedBrand = state.androidBrand ? brandMap[state.androidBrand] : null;
+      if (selectedBrand) {
+        src = modelContextImages[selectedBrand[0]];
+        alt = selectedBrand[1];
+      } else {
+        src = imagePath('devices', 'android');
+        alt = 'Android phone category preview';
+      }
+    }
+
+    modelContextImage.src = src;
+    modelContextImage.alt = alt;
   }
 
   function renderDevices() {
@@ -921,6 +976,7 @@ if (modernQuoteForm) {
 
   function renderModels() {
     modelGrid.textContent = '';
+    updateModelContextImage();
     if (!state.device) {
       modelTitle.textContent = 'Choose Model';
       modelCustomWrap.hidden = true;
@@ -940,6 +996,7 @@ if (modernQuoteForm) {
           group: 'android-brand',
           key: brand.key,
           isOther,
+          showImage: false,
         });
         if (state.androidBrand === brand.key) {
           button.classList.add('is-selected');
@@ -967,8 +1024,14 @@ if (modernQuoteForm) {
       : quoteData.models[state.device.key] || [];
     modelList.forEach((model, index) => {
       const isOther = Boolean(model.other);
-      const image = imagePath('models', model.key);
-      const button = makeChoiceButton({ label: model.label, image, group: 'model', key: model.key, isOther });
+      const button = makeChoiceButton({
+        label: model.label,
+        image: '',
+        group: 'model',
+        key: model.key,
+        isOther,
+        showImage: false,
+      });
       if (state.model?.key === model.key) {
         button.classList.add('is-selected');
       }

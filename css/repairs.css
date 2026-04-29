@@ -373,6 +373,23 @@
   font-size: clamp(1.08rem, 3vw, 1.28rem);
 }
 
+.quote-model-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+}
+
+#quote-model-context-image {
+  width: 4.3rem;
+  height: 4.3rem;
+  border-radius: 10px;
+  border: 1px solid #3d5670;
+  background: linear-gradient(145deg, #152b42, #102134);
+  object-fit: cover;
+  box-shadow: 0 8px 18px rgb(3 10 19 / 32%);
+}
+
 .quote-microcopy {
   margin: 0.35rem 0 0;
   color: #a9bfd6;
@@ -407,6 +424,11 @@
   transition:
     border-color 0.2s ease,
     transform 0.2s ease;
+}
+
+.quote-choice-text-only {
+  grid-template-columns: 1fr;
+  gap: 0;
 }
 
 .quote-choice:hover,
