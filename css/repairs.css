@@ -261,6 +261,11 @@
   color: #c4d5e7;
 }
 
+.quote-workbench-copy .repair-kicker {
+  margin: 0;
+  color: #7dd3fc;
+}
+
 .quote-workbench-copy a {
   color: #7dd3fc;
   font-weight: 600;
