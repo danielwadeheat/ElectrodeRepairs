@@ -519,6 +519,18 @@
   justify-content: flex-end;
 }
 
+.quote-nav[hidden] {
+  display: none !important;
+}
+
+.quote-final-actions {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.62rem;
+  justify-content: flex-start;
+}
+
 .quote-submit-status {
   margin: 0.05rem 0 0;
   color: #b9f3d4;

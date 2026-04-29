@@ -419,9 +419,10 @@ if (modernQuoteForm) {
   const issueCustomInput = document.getElementById('quote-issue-custom');
   const panels = Array.from(modernQuoteForm.querySelectorAll('[data-step-panel]'));
   const indicators = Array.from(document.querySelectorAll('[data-step-indicator]'));
+  const nav = modernQuoteForm.querySelector('.quote-nav');
   const backBtn = document.getElementById('quote-back-btn');
+  const finalBackBtn = document.getElementById('quote-final-back-btn');
   const nextBtn = document.getElementById('quote-next-btn');
-  const submitBtn = document.getElementById('quote-submit-btn');
   const submitStatus = document.getElementById('quote-submit-status');
 
   const hiddenDeviceName = document.getElementById('quote-hidden-device-name');
@@ -460,7 +461,7 @@ if (modernQuoteForm) {
     upgrade_build_service: { key: 'upgrade-build-service', label: 'Upgrade/Build Service' },
     general_diagnostic: { key: 'general-diagnostic', label: 'General Diagnostic' },
     connectivity_issue: { key: 'connectivity-issue', label: 'Connectivity Issue' },
-    other_issue: { key: 'other-issue', label: '? Other Issue', other: true },
+    other_issue: { key: 'other-issue', label: 'Other Issue', other: true },
   };
 
   function imagePath(type, key) {
@@ -484,7 +485,7 @@ if (modernQuoteForm) {
         { key: 'iphone-13', label: 'iPhone 13' },
         { key: 'iphone-14', label: 'iPhone 14' },
         { key: 'iphone-15', label: 'iPhone 15' },
-        { key: 'iphone-other', label: '? Other iPhone Model', other: true },
+        { key: 'iphone-other', label: 'Other iPhone Model', other: true },
       ],
       android: [
         { key: 'android-samsung-s', label: 'Samsung Galaxy S Series' },
@@ -492,7 +493,7 @@ if (modernQuoteForm) {
         { key: 'android-pixel', label: 'Google Pixel' },
         { key: 'android-motorola', label: 'Motorola' },
         { key: 'android-oneplus', label: 'OnePlus' },
-        { key: 'android-other', label: '? Other Android Model', other: true },
+        { key: 'android-other', label: 'Other Android Model', other: true },
       ],
       tablet: [
         { key: 'tablet-ipad', label: 'iPad' },
@@ -500,7 +501,7 @@ if (modernQuoteForm) {
         { key: 'tablet-ipad-pro', label: 'iPad Pro' },
         { key: 'tablet-galaxy-tab', label: 'Samsung Galaxy Tab' },
         { key: 'tablet-fire', label: 'Amazon Fire Tablet' },
-        { key: 'tablet-other', label: '? Other Tablet', other: true },
+        { key: 'tablet-other', label: 'Other Tablet', other: true },
       ],
       laptop: [
         { key: 'laptop-macbook-air', label: 'MacBook Air' },
@@ -508,7 +509,7 @@ if (modernQuoteForm) {
         { key: 'laptop-dell-inspiron', label: 'Dell Inspiron' },
         { key: 'laptop-hp-pavilion', label: 'HP Pavilion' },
         { key: 'laptop-lenovo-thinkpad', label: 'Lenovo ThinkPad' },
-        { key: 'laptop-other', label: '? Other Laptop', other: true },
+        { key: 'laptop-other', label: 'Other Laptop', other: true },
       ],
       console: [
         { key: 'console-ps5', label: 'PlayStation 5' },
@@ -516,7 +517,7 @@ if (modernQuoteForm) {
         { key: 'console-xbox-series', label: 'Xbox Series X/S' },
         { key: 'console-xbox-one', label: 'Xbox One' },
         { key: 'console-switch', label: 'Nintendo Switch' },
-        { key: 'console-other', label: '? Other Console', other: true },
+        { key: 'console-other', label: 'Other Console', other: true },
       ],
       desktop: [
         { key: 'desktop-custom', label: 'Custom Desktop' },
@@ -524,9 +525,9 @@ if (modernQuoteForm) {
         { key: 'desktop-hp', label: 'HP Desktop' },
         { key: 'desktop-allinone', label: 'All-in-One PC' },
         { key: 'desktop-gaming', label: 'Gaming PC' },
-        { key: 'desktop-other', label: '? Other Desktop', other: true },
+        { key: 'desktop-other', label: 'Other Desktop', other: true },
       ],
-      other: [{ key: 'other-custom-model', label: '? Other Device / Model', other: true }],
+      other: [{ key: 'other-custom-model', label: 'Other Device / Model', other: true }],
     },
     issues: {
       iphone: [
@@ -716,7 +717,10 @@ if (modernQuoteForm) {
     });
     backBtn.disabled = state.step === 1;
     nextBtn.hidden = state.step === 5;
-    submitBtn.hidden = state.step !== 5;
+    if (nav) {
+      nav.hidden = state.step === 5;
+      nav.style.display = state.step === 5 ? 'none' : 'flex';
+    }
   }
 
   function validateStep(step) {
@@ -812,6 +816,11 @@ if (modernQuoteForm) {
   }
 
   backBtn.addEventListener('click', () => {
+    submitStatus.hidden = true;
+    goToStep(state.step - 1);
+  });
+
+  finalBackBtn?.addEventListener('click', () => {
     submitStatus.hidden = true;
     goToStep(state.step - 1);
   });
