@@ -420,6 +420,7 @@ if (modernQuoteForm) {
   const panels = Array.from(modernQuoteForm.querySelectorAll('[data-step-panel]'));
   const indicators = Array.from(document.querySelectorAll('[data-step-indicator]'));
   const nav = modernQuoteForm.querySelector('.quote-nav');
+  const quoteWidgetShell = document.querySelector('.quote-widget-shell');
   const backBtn = document.getElementById('quote-back-btn');
   const finalBackBtn = document.getElementById('quote-final-back-btn');
   const nextBtn = document.getElementById('quote-next-btn');
@@ -596,6 +597,29 @@ if (modernQuoteForm) {
     issues: [],
     issueCustom: '',
   };
+
+  if (quoteWidgetShell) {
+    const setWidgetEngaged = () => {
+      quoteWidgetShell.classList.add('is-engaged');
+    };
+
+    const clearWidgetEngaged = (target) => {
+      if (!quoteWidgetShell.contains(target)) {
+        quoteWidgetShell.classList.remove('is-engaged');
+      }
+    };
+
+    quoteWidgetShell.addEventListener('pointerdown', setWidgetEngaged);
+    quoteWidgetShell.addEventListener('focusin', setWidgetEngaged);
+
+    document.addEventListener('pointerdown', (event) => {
+      clearWidgetEngaged(event.target);
+    });
+
+    document.addEventListener('focusin', (event) => {
+      clearWidgetEngaged(event.target);
+    });
+  }
 
   function makeChoiceButton({ label, image, group, key, isOther = false }) {
     const button = document.createElement('button');
