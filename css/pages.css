@@ -223,6 +223,11 @@
   line-height: 1.25;
 }
 
+#about-story-title {
+  text-align: center;
+  font-size: clamp(1.34rem, 3.7vw, 1.66rem);
+}
+
 .about-heading-with-icon {
   display: inline-flex;
   align-items: center;
@@ -247,6 +252,11 @@
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
+}
+
+#about-bios-title .about-heading-icon {
+  width: 1.22em;
+  height: 1.22em;
 }
 
 .about-panel p {
